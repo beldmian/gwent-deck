@@ -1,5 +1,6 @@
 import { Container, Grid, Button } from '@material-ui/core'
 import ButtonLink from '../../components/ButtonLink'
+import Head from 'next/head'
 
 function contentItemParser(item) {
   if (typeof item.insert === "string" ) {
@@ -37,9 +38,14 @@ function contentItemParser(item) {
 export default function GuideDetail({ data }) {
   return (
     <Container fixed>
+      <Head>
+        <title>{data.name}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <h1>{data.name} </h1>
       <Grid container spacing={2} justify="space-evenly">
         <Grid item xs={4}>
+          <h2>Crafting cost: {data.craftingCost}</h2>
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {data.deck.cards.sort((b, a) => (a.provisionsCost > b.provisionsCost) ? 1 : ((b.provisionsCost > a.provisionsCost) ? -1 : 0))
               .map(card => {
