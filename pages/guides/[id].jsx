@@ -1,4 +1,4 @@
-import { Container, Grid, Button } from '@material-ui/core'
+import { Container, Grid, Button, Box, Card, CardMedia } from '@material-ui/core'
 import ButtonLink from '../../components/ButtonLink'
 import Head from 'next/head'
 
@@ -22,9 +22,12 @@ function contentItemParser(item) {
     )
   } else if (item.insert.image != null) {
     return (
-      <p>
-        <img src={item.insert.image}></img>
-      </p>
+      <Card>
+        <CardMedia
+          component="img"
+          image={item.insert.image}
+        />
+      </Card>
     )
   } else if (item.insert.video != null) {
     return (
@@ -37,14 +40,14 @@ function contentItemParser(item) {
 
 export default function GuideDetail({ data }) {
   return (
-    <Container fixed>
+    <Container maxWidth="md">
       <Head>
         <title>{data.name}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <h1>{data.name} </h1>
       <Grid container spacing={2} justify="space-evenly">
-        <Grid item xs={4}>
+        <Grid item xs={12} md={5} sm={12}>
           <h2>Crafting cost: {data.craftingCost}</h2>
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
             {data.deck.cards.sort((b, a) => (a.provisionsCost > b.provisionsCost) ? 1 : ((b.provisionsCost > a.provisionsCost) ? -1 : 0))
@@ -67,7 +70,7 @@ export default function GuideDetail({ data }) {
               })}
           </ul>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={12} md={7}>
           {data.content.ops.map(item => contentItemParser(item))}
           <p>
             <Button color="primary" variant="outlined" component={ButtonLink} href="/">Back to home</Button>            
