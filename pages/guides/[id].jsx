@@ -1,4 +1,4 @@
-import { Container, Grid, Button, Box, Card, CardMedia } from '@material-ui/core'
+import { Container, Grid, Button, Card, CardMedia, CardHeader, Avatar, CardContent } from '@material-ui/core'
 import ButtonLink from '../../components/ButtonLink'
 import Head from 'next/head'
 
@@ -45,11 +45,25 @@ export default function GuideDetail({ data }) {
         <title>{data.name}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <h1>{data.name} </h1>
+      <h1 style={{textAlign: "center"}}>{data.name} </h1>
       <Grid container spacing={2} justify="space-evenly">
         <Grid item xs={12} md={5} sm={12}>
           <h2>Crafting cost: {data.craftingCost}</h2>
           <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+            <li style={{
+              backgroundImage: `url(https://www.playgwent.com/build/img/netdecking/cardList/mask-cf40fa26.png), url(${'https://www.playgwent.com' + data.deck.stratagem.slotImg.small})`,
+              backgroundRepeat: 'no-repeat',
+              height: 40,
+              padding: 4
+            }}>
+              <p style={{ color: "#fff", margin: 0, fontSize: "16px" }}>  
+                {data.deck.stratagem.localizedName}
+              </p>
+              <p style={{ color: "#fff", margin: 0, fontSize: "16px" }}>  
+                {data.deck.stratagem.craftingCost}
+              </p>
+            </li>
+            <br/>
             {data.deck.cards.sort((b, a) => (a.provisionsCost > b.provisionsCost) ? 1 : ((b.provisionsCost > a.provisionsCost) ? -1 : 0))
               .map(card => {
                 return (
@@ -61,9 +75,12 @@ export default function GuideDetail({ data }) {
                   }}>
                     <p style={{ color: "#fff", margin: 0, fontSize: "16px" }}>
                       {card.localizedName}
+                      <span style={{ color: "#fff", margin: 0, fontSize: "20px", float: "right" }}>
+                        {(card.repeatCount === 0) ? '' : 'x2'}
+                      </span>
                     </p>
                     <p style={{ color: "#fff", margin: 0, fontSize: "16px" }}>
-                      {card.provisionsCost} : {card.craftingCost}
+                      {card.provisionsCost} : {card.craftingCost} 
                     </p>
                   </li>
                 )
