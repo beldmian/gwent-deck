@@ -3,8 +3,9 @@ import GuideGridItem from '../components/GuideGridItem'
 import { Grid, Container, Button, ButtonGroup, Box } from '@material-ui/core'
 import { Pagination } from '@material-ui/lab'
 import Head from 'next/head'
+import PropTypes from 'prop-types'
 
-export default function Home({data}) {
+function Home({data}) {
   const [filter, setFilter] = useState('all')
   const [page, setPage] = useState(1)
   useEffect(() => {
@@ -52,7 +53,13 @@ export default function Home({data}) {
   )
 }
 
-export async function getServerSideProps(context) {
+Home.propTypes = {
+  data: PropTypes.object
+}
+
+export default Home
+
+export async function getServerSideProps() {
   const resp = await fetch('https://www.playgwent.com/en/decks/api/guides/offset/0/limit/500')
   const data = await resp.json()
   return {

@@ -1,11 +1,20 @@
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 
-export default function ButtonLink({ className, href, hrefAs, children }) {
+function ButtonLink({ className, href, children }) {
   return (
-    <Link href={href} as={hrefAs}>
+    <Link href={href}>
       <a className={className}>
         {children}
       </a>
     </Link>
   )
 }
+
+ButtonLink.propTypes = {
+  className: PropTypes.string,
+  href: PropTypes.string,
+  children: PropTypes.element,
+}
+
+export default ButtonLink

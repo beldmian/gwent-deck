@@ -1,5 +1,7 @@
-import { Container, Grid, Button, Card, CardMedia, CardHeader, Avatar, CardContent } from '@material-ui/core'
+/* eslint-disable no-undef */
+import { Container, Grid, Button, Card, CardMedia } from '@material-ui/core'
 import ButtonLink from '../../components/ButtonLink'
+import PropTypes from "prop-types"
 import Head from 'next/head'
 
 function contentItemParser(item) {
@@ -38,7 +40,7 @@ function contentItemParser(item) {
   }
 }
 
-export default function GuideDetail({ data }) {
+function GuideDetail({ data }) {
   return (
     <Container maxWidth="md">
       <Head>
@@ -99,6 +101,11 @@ export default function GuideDetail({ data }) {
   )
 }
 
+GuideDetail.propTypes = {
+  data: PropTypes.object
+}
+
+export default GuideDetail
 
 export async function getServerSideProps(context) {
   const resp = await fetch('https://www.playgwent.com/en/decks/api/guides/'+context.params.id)

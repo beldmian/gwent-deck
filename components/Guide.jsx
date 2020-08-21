@@ -1,7 +1,7 @@
 import { Button, Card, CardHeader, CardActions, Avatar } from '@material-ui/core'
 import ButtonLink from './ButtonLink'
 
-export default function Guide({ guide }) {
+function Guide({ guide }) {
   return (
     <div>
       <Card variant="outlined">
@@ -23,3 +23,9 @@ export default function Guide({ guide }) {
     </div>
   )
 }
+
+Guide.propTypes = {
+  guide: PropTypes.object
+}
+
+export default Guide
