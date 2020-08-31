@@ -11,9 +11,9 @@ function Home({data}) {
   useEffect(() => {
     window.scrollTo(0, 0);
   })
-  
+
   const perPage = 21
-  
+
   return (
     <Container style={{marginTop: 20}} fixed>
       <Head>
@@ -32,21 +32,21 @@ function Home({data}) {
       <Grid container spacing={2}>
         {filter == 'all' ? data.slice((page-1)*perPage, page*perPage).map(guide => {
           return (
-            <GuideGridItem key={guide.id} guide={guide} /> 
+            <GuideGridItem key={guide.id} guide={guide} />
           )
         }) : data.filter(guide => guide.faction.short == filter).slice((page - 1) * perPage, page * perPage).map(guide => {
           return (
-            <GuideGridItem key={guide.id} guide={guide} /> 
+            <GuideGridItem key={guide.id} guide={guide} />
           )
         })}
       </Grid>
       <Box display="flex" justifyContent="center">
-        <Pagination 
-          style={{margin: '10px 0'}} 
-          count={24} 
-          page={page} 
+        <Pagination
+          style={{margin: '10px 0'}}
+          count={24}
+          page={page}
           onChange={(e, v) => {setPage(v)}}
-          siblingCount={0} boundaryCount={1} 
+          siblingCount={0} boundaryCount={1}
         />
       </Box>
     </Container>

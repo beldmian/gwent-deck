@@ -1,4 +1,5 @@
 import { Button, Card, CardHeader, CardActions, Avatar } from '@material-ui/core'
+import PropTypes from 'prop-types'
 import ButtonLink from './ButtonLink'
 
 function Guide({ guide }) {
@@ -7,7 +8,7 @@ function Guide({ guide }) {
       <Card variant="outlined">
         <CardHeader
           avatar={
-            <Avatar 
+            <Avatar
               aria-label="ability"
               variant="square"
               src={'https://www.playgwent.com/'+guide.abilityImg.small}
@@ -19,7 +20,7 @@ function Guide({ guide }) {
         <CardActions>
           <Button color="primary" component={ButtonLink} href={'/guides/'+guide.id}>Show deck</Button>
         </CardActions>
-      </Card>      
+      </Card>
     </div>
   )
 }
